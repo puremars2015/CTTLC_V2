@@ -27,10 +27,14 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/img/CTTLC_logo.svg"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/css/index.css",
+              "src/css/product.css",
+              "src/css/styles.css"
             ],
             "scripts": []
           },
@@ -90,10 +94,14 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/img/CTTLC_logo.svg"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/css/index.css",
+              "src/css/product.css",
+              "src/css/styles.css"
             ],
             "scripts": []
           }

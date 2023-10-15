@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>佳泰半導體 CTTLC</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/product.css">
+</head>
+
+<body>
+    <div id="header"></div>
+    <main>
+        <div class="breadCrumbs"></div>
+        <div class="content">
+            <div class="searchOptions">
+                <div>
+                    <p id="titprodPackage" >材料：</p>
+                    <select name="prodPackage" id="prodPackage"></select>
+                </div>
+                <div>
+                    <p  id="titprodConfiguration" >材料種類：</p>
+                    <select name="prodConfiguration" id="prodConfiguration" onchange="prodConfiguration_onchange()"></select>
+                </div>                
+            </div>
+            <div style="width:100%" class="cttlc-product">
+                <img style="width:100%" id="cttlc-product-img"/>
+            </div>
+        </div>
+    </main>
+    <div id="footer"></div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/materialData.js"></script>
+    <script>
+    let prodPackageOption = '<option></<option>';
+    let prodPackage = prodData['PowerMOSFETs_option']['Package'];
+    let prodConfiguration = prodData['PowerMOSFETs_option']['Configuration'];;
+
+    for (let i = 0; i < prodPackage.length; i++) {
+        $('#prodPackage').append('<option value="' + i + '">' + prodPackage[i] + '</<option>');
+    }
+    for (let i = 0; i < prodConfiguration.length; i++) {
+        $('#prodConfiguration').append('<option value="' + i + '">' + prodConfiguration[i] + '</<option>');
+    }
+
+    function prodConfiguration_onchange() {  
+        let item = $('#prodConfiguration :selected').text();
+        $('#cttlc-product-img').hide();
+        switch(item){
+            case "":
+                document.getElementById('cttlc-product-img').src = "";
+                $('#cttlc-product-img').hide();
+                break;
+            default:   
+                document.getElementById('cttlc-product-img').src = `..//img//material//${item}.png`;
+                $('#cttlc-product-img').show();
+                break;
+        }
+    }
+
+
+    </script>
+</body>
+
+
+</html>

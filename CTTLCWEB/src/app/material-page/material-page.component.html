@@ -1,0 +1,19 @@
+<main>
+    <div class="breadCrumbs"></div>
+    <div class="content">
+        <div class="searchOptions">
+            <div>
+                <p id="titprodConfiguration" >材料種類：</p>
+                <select [(ngModel)]="materialKind" (change)="changeMaterialKind()">
+                    <option *ngFor="let i of items">
+                        <label>{{i.name}}</label>
+                    </option>
+                </select>
+            </div>                
+        </div>
+        <div style="width:100%" class="cttlc-product">
+            <img style="width:100%" [src]="imgSrc"/>
+        </div>
+    </div>
+</main>
+

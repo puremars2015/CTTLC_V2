@@ -1,0 +1,129 @@
+<main>
+    <div class="breadCrumbs"></div>
+    <div class="content">
+        <div style="width:100%" class="cttlc-product">
+            <img style="width:100%" src = "../../assets/img/agenda.png"/>
+        </div>
+    </div>
+</main>
+
+<!-- <main>
+    <div class="breadCrumbs"></div>
+    <div class="content">
+        <div class="searchOptions">
+            <div>
+                <p>材料：</p>
+                <select name="options" onchange="OptionSelectChanged(0)"></select>
+               
+            </div>
+            <div>
+                <p>分類：</p>
+                <select name="options" onchange="OptionSelectChanged(1)"></select>
+                
+            </div>
+            
+        </div>
+        <div class="table">
+            <table width="99%" border="1" align="center" cellpadding="0" cellspacing="0"
+                bordercolor="#DDDDDD" id="table1" class="PDTB">
+                <thead>
+                    <tr id="headerRow">                        
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main> -->
+<!-- <script>
+    var data = dataString
+
+    var optList = [];
+
+    // 設定每個下拉選單請選擇
+    for (let item of document.getElementsByName('options')) {
+        item.innerHTML += '<option value="0">請選擇</option>';
+        optList.push(item);
+    }
+
+    function UpdateOptions(data, opt) {
+        if (opt == undefined) {
+            return;ㄉ
+        }
+        opt.innerHTML = '<option value="0">請選擇</option>';
+        for (let item in data) { 
+            opt.innerHTML += `<option value="${item}">${item}</option>`;
+        }
+    }
+
+    UpdateOptions(data, optList[0]);
+
+
+    function OptionSelectChanged(index) {
+        if (optList[index].value === '0') {
+            ClearTable();
+            UpdateOptions([], optList[index + 1]);
+            return;
+        }
+
+        let selectedList = 'data';
+
+        for (let i = 0; i <= index; i++) {
+            selectedList += `.${optList[i].value}`;
+        }
+
+        let subData = eval(selectedList);
+
+        //檢查是不是最後一個,如果是最後一個就刷新datatable
+        if (index + 1 >= optList.length) {
+            ClearTable();
+            RenderTable(Object.values(subData));
+            return;
+        }
+
+        UpdateOptions(subData, optList[index+1]);
+    }
+
+    function ClearTable() {
+        let headrow = document.getElementById('headerRow');
+        headrow.innerHTML = '';
+
+        let tbody = document.querySelector('tbody');
+        tbody.innerHTML = '';
+    }
+
+    function RenderTable(data) {
+
+        // 提取所有屬性名稱
+        var allKeys = [];
+        data.forEach(function (item) {
+            Object.keys(item).forEach(function (key) {
+                if (!allKeys.includes(key)) {
+                    allKeys.push(key);
+                }
+            });
+        });
+
+        // 動態生成列頭
+        var headerRow = document.getElementById('headerRow');
+        allKeys.forEach(function (key) {
+            var cell = document.createElement('th');
+            cell.textContent = key;
+            headerRow.appendChild(cell);
+        });
+
+        // 填充資料
+        data.forEach(function (item) {
+            var row = document.createElement('tr');
+            allKeys.forEach(function (key) {
+                var cell = document.createElement('td');
+                cell.textContent = item[key] || '';
+                row.appendChild(cell);
+            });
+            document.querySelector('tbody').appendChild(row);
+        });
+    }
+
+</script> -->

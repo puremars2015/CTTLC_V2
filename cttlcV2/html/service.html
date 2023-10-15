@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>佳泰半導體 CTTLC</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/product.css">
+</head>
+
+<body>
+    <div id="header"></div>
+    <main>
+        <div class="breadCrumbs"></div>
+        <div class="content">
+            <div class="searchOptions">
+                <div>
+                    <p id="titprodPackage" >產品與服務：</p>
+                    <select name="prodPackage" id="prodPackage"></select>
+                </div>
+                <div>
+                    <p  id="titprodConfiguration" >材料種類：</p>
+                    <select name="prodConfiguration" id="prodConfiguration" onchange="prodConfiguration_onchange()"></select>
+                </div>
+                <div>
+                    <p id="titprodType">製程類別：</p>
+                    <select name="prodType" id="prodType" onchange="prodType_onchange()"></select>
+                </div>
+                <div>
+                    <p id="titprodVDS">製程：</p>
+                    <select name="prodVDS" id="prodVDS" onchange="prodVDS_onchange()"></select>
+                </div>
+            </div>
+            <div style="width:100%" class="cttlc-product">
+                <img style="width:100%" id="cttlc-product-img"/>
+            </div>
+        </div>
+    </main>
+    <div id="footer"></div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/serviceData.js"></script>
+    <script>
+        $('#prodConfiguration').hide();                             
+        $('#prodType').hide();                
+        $('#prodVDS').hide();
+        $('#titprodConfiguration').hide();                             
+        $('#titprodType').hide();                
+        $('#titprodVDS').hide();
+        $('#cttlc-product-img').hide();
+    let prodPackageOption = '<option></<option>';
+    let prodPackage = prodData['PowerMOSFETs_option']['Package'];
+
+    for (let i = 0; i < prodPackage.length; i++) {
+        $('#prodPackage').append('<option value="' + i + '">' + prodPackage[i] + '</<option>');
+    }
+
+        let prodConfiguration = prodData['PowerMOSFETs_option']['Configuration2'];
+        $('#prodConfiguration').show();
+        $('#titprodConfiguration').show();
+
+        for (let i = 0; i < prodConfiguration.length; i++) {
+            $('#prodConfiguration').append('<option value="' + i + '">' + prodConfiguration[i] + '</<option>');
+        }
+
+    function prodPackage_onchange() {  
+        $('#prodConfiguration').empty();
+        $('#prodType').empty();
+        $('#prodVDS').empty();
+        let prodConfiguration;
+        let item = $('#prodPackage').val();
+
+        
+        $('#prodConfiguration').hide();                             
+        $('#prodType').hide();                
+        $('#prodVDS').hide();
+        $('#titprodConfiguration').hide();                             
+        $('#titprodType').hide();                
+        $('#titprodVDS').hide();
+
+        $('#cttlc-product-img').hide();
+
+        switch (item) {
+            case "1":
+                prodConfiguration = prodData['PowerMOSFETs_option']['Configuration2'];
+                $('#prodConfiguration').show();
+                $('#titprodConfiguration').show();
+                break;
+            default:                               
+
+                break;
+        }
+        for (let i = 0; i < prodConfiguration.length; i++) {
+            $('#prodConfiguration').append('<option value="' + i + '">' + prodConfiguration[i] + '</<option>');
+        }
+    }
+
+    function prodConfiguration_onchange() {
+        $('#prodType').empty();
+        $('#prodVDS').empty();
+        let prodType;
+        let item = $('#prodConfiguration :selected').text();
+
+        $('#prodType').hide();                
+        $('#prodVDS').hide();
+        $('#titprodType').hide();                
+        $('#titprodVDS').hide();
+        $('#cttlc-product-img').hide();
+        
+        switch(item){
+            case "矽晶圓材料(檔案)":
+                prodType = prodData['PowerMOSFETs_option']['Type1'];
+                $('#prodType').show(); 
+                $('#titprodType').show();
+                break;
+            case "碳化矽元件(檔案)":
+                prodType = prodData['PowerMOSFETs_option']['Type2'];
+                $('#prodType').show(); 
+                $('#titprodType').show();
+                break;
+            case "矽晶圓元件":
+                prodType = prodData['PowerMOSFETs_option']['Type3'];
+                $('#prodType').show(); 
+                $('#titprodType').show();
+                break;
+            default:
+
+                break;
+        }
+        for (let i = 0; i < prodType.length; i++) {
+            $('#prodType').append('<option value="' + i + '">' + prodType[i] + '</<option>');
+        }
+
+    }
+
+
+    function prodType_onchange() {
+        $('#prodVDS').empty();
+        let prodVDS;
+        let item = $('#prodType :selected').text();
+
+        $('#prodVDS').hide(); 
+        $('#titprodVDS').hide(); 
+        $('#cttlc-product-img').hide();
+
+        switch(item){
+            case "SBD":
+                prodVDS = prodData['PowerMOSFETs_option']['VDS1'];
+                $('#prodVDS').show(); 
+                $('#titprodVDS').show(); 
+                for (let i = 0; i < prodVDS.length; i++) {
+                    $('#prodVDS').append('<option value="' + i + '">' + prodVDS[i] + '</<option>');
+                }
+                break;
+            case "MOSFET":
+                if ($('#prodConfiguration :selected').text() == "矽晶圓元件") {
+                    prodVDS = prodData['PowerMOSFETs_option']['VDS2'];
+                    $('#prodVDS').show();
+                    $('#titprodVDS').show();
+                    for (let i = 0; i < prodVDS.length; i++) {
+                        $('#prodVDS').append('<option value="' + i + '">' + prodVDS[i] + '</<option>');
+                    }
+                } else {
+                    $('#cttlc-product-img').show();
+                    document.getElementById('cttlc-product-img').src = `..//img//Service//${item}.png`;
+                }
+                break;
+            case "JBS":
+                $('#cttlc-product-img').show();
+                document.getElementById('cttlc-product-img').src = `..//img//Service//${item}.png`;
+                break;
+            default:
+
+                break;
+        }
+
+    }
+
+
+    function prodVDS_onchange() {
+        let item = $('#prodVDS :selected').text();
+        if(item == ""){
+            $('#cttlc-product-img').hide();
+            document.getElementById('cttlc-product-img').src = "";
+        }
+        else{
+            $('#cttlc-product-img').show();
+            document.getElementById('cttlc-product-img').src = `..//img//Service//${item}.png`;
+        }
+        
+    }
+    </script>
+</body>
+
+
+</html>
