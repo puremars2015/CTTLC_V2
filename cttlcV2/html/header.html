@@ -1,0 +1,59 @@
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+
+<div class="headTop">
+    <ul>
+        <li>
+            <a href="#">繁體版</a>
+        </li>
+        <li>
+            <a href="#">简体版</a>
+        </li>
+        <li>
+            <a href="#">English</a>
+        </li>
+    </ul>
+</div>
+<header>
+    <nav>
+        <div class="logoDiv">
+            <img src="../img/CTTLC_logo.svg" alt="CTTLC">
+        </div>
+        <div class="navDiv">
+            <form class="searchBar">
+                <label for="search">產品搜尋</label>
+                <input type="text" id="search" name="search">
+                <input type="submit" value="搜尋" id="searchSub">
+            </form>
+            <div class="tabBar">
+                <ul>
+                    <li>
+                        <a href="home.html">首頁</a>
+                    </li>
+                    <li>
+                        <a href="agenda.html" id="product">產品與服務</a>
+                    </li>
+                    <li>
+                        <a href="material.html" id="product">矽晶圓材料</a>
+                    </li>
+                    <li>
+                        <a href="service.html" id="Service">功率元件與模塊設計服務</a>
+                    </li>
+                    <li>
+                        <a href="#">製造工廠</a>
+                    </li>
+                    <li>
+                        <a href="#">線上諮詢</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">聯繫我們</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<script>
+    let pageName = window.location.pathname.split('/')[4].split('.')[0];
+    $('#' + pageName).css({ 'color': '#1f2a50' }).parents('li').css({ 'background-color': '#efefef', 'color': '#1f2a50' });
+</script>
